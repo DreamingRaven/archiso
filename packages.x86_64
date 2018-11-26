@@ -18,6 +18,7 @@ elinks
 ethtool
 exfat-utils
 f2fs-tools
+fish
 fsarchiver
 git
 gnu-netcat
@@ -53,6 +54,7 @@ parted
 partimage
 ppp
 pptpclient
+python
 refind-efi
 rp-pppoe
 rsync
@@ -73,3 +75,5 @@ wpa_actiond
 wpa_supplicant
 wvdial
 xl2tpd
+zsh
+zsh-completions
