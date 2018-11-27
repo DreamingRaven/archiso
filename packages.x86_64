@@ -75,5 +75,6 @@ wpa_actiond
 wpa_supplicant
 wvdial
 xl2tpd
+xorg-xinit
 zsh
 zsh-completions
