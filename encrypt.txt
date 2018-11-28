@@ -1,0 +1,7 @@
+Summary of steps to achieve full disk dm-crypt encryption
+- create a container of partition or device to be encrypted
+	- # cryptsetup open --type plain -d /dev/urandom /dev/<block-device> to_be_wiped
+- wipe container with zeros (if=/dev/urandom is not required as cipher is used for randomness)
+	- # dd if=/dev/zero of=/dev/mapper/to_be_wiped status=progress
+- close container again
+	- # cryptsetup close to_be_wiped
