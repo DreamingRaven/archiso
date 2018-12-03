@@ -1,7 +1,27 @@
 Summary of steps to achieve full disk dm-crypt encryption
+
+Preparing the disk
 - create a container of partition or device to be encrypted
 	- # cryptsetup open --type plain -d /dev/urandom /dev/<block-device> to_be_wiped
 - wipe container with zeros (if=/dev/urandom is not required as cipher is used for randomness)
 	- # dd if=/dev/zero of=/dev/mapper/to_be_wiped status=progress
 - close container again
 	- # cryptsetup close to_be_wiped
+
+Preparing a keyfile
+- create a random set of characters to be used as the keyfile or you could use images
+	- # dd bs=512 count=4 if=/dev/random of=/etc/mykeyfile
+
+Preparing the non-boot partition(s)
+- Using the device /dev/sda, with the twofish-xts cipher with a 512 bit key size and using a keyfile we have the following options for this scenario:
+	- # cryptsetup --cipher=twofish-xts-plain64 --offset=0 --key-file=/dev/sdc --key-size=512 open --type=plain /dev/sda cryptlvm
+- check mapping
+	- # fdisk -l
+- make a superfloppy or use lvm partitions
+	- # mkfs.ext4 /dev/mapper/cryptlvm
+- mount partition(s)
+	- # mount /dev/mapper/cryptlvm /mnt/
+
+Prepare the boot partition using vfat or ext4 on a usb
+	- 
+
